@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>slocely.Digi</title>
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Indie+Flower&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        :root {
+            --primary: #FF9900;
+            --secondary: #232F3E;
+            --light: #FFFFFF;
+            --dark: #131921;
+            --gray: #EAEDED;
+            --text: #333333;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: var(--gray);
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--dark), var(--secondary));
+            color: var(--light);
+            padding: 1rem 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            color: var(--primary);
+            margin-right: 10px;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 1.5rem;
+        }
+        
+        nav ul li a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1505740420928-5e560c06d30e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            height: 60vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: var(--light);
+        }
+        
+        .hero-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-family:'Play Fair Display',sarif;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            font-style:italic;
+            font-family:'Indie Flower',cursive;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 0.8rem 1.8rem;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: var(--light);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Featured Products */
+        .featured {
+            padding: 4rem 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+        
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .product-card {
+            background-color: var(--light);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+        
+        .product-image {
+            height: 250px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+        
+        .product-badge {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background-color: var(--primary);
+            color: var(--dark);
+            padding: 0.3rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .product-info {
+            padding: 1.5rem;
+        }
+        
+        .product-category {
+            color: var(--primary);
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 600;
+        }
+        
+        .product-price {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .current-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--secondary);
+        }
+        .vary{
+            font-size:1rem;
+            font-weight:500;
+            color:red;
+        }
+        
+        .original-price {
+            font-size: 1rem;
+            text-decoration: line-through;
+            color: #999;
+            margin-left: 0.5rem;
+        }
+        
+        .discount {
+            color: #e74c3c;
+            font-weight: 600;
+            margin-left: 0.5rem;
+        }
+        
+        .product-rating {
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .product-link {
+            display: block;
+            text-align: center;
+            background-color: var(--secondary);
+            color: var(--light);
+            padding: 0.6rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        
+        .product-link:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+        }
+        
+        /* Categories Section */
+        .categories {
+            padding: 4rem 0;
+            background-color: var(--light);
+        }
+        
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .category-card {
+            background-color: var(--gray);
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            padding: 2rem 1rem;
+            transition: all 0.3s;
+        }
+        
+        .category-card:hover {
+            background-color: var(--primary);
+            transform: translateY(-5px);
+        }
+        
+        .category-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+        
+        .category-card:hover .category-icon {
+            color: var(--light);
+        }
+        
+        .category-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: 4rem 0;
+            background-color: var(--secondary);
+            color: var(--light);
+        }
+        
+        .testimonials .section-title h2 {
+            color: var(--light);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .testimonial-card {
+            background-color: rgba(255, 255, 255, 0.1);
+            padding: 2rem;
+            border-radius: 10px;
+            position: relative;
+        }
+        
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-right: 1rem;
+        }
+        
+        .author-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .author-info h4 {
+            font-weight: 600;
+            margin-bottom: 0.2rem;
+        }
+        
+        .author-info p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Newsletter */
+        .newsletter {
+            padding: 4rem 0;
+            text-align: center;
+            background-color: var(--light);
+        }
+        
+        .newsletter-form {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .newsletter-form input {
+            flex: 1;
+            min-width: 300px;
+            padding: 1rem;
+            border: 2px solid var(--gray);
+            border-radius: 50px 0 0 50px;
+            font-size: 1rem;
+            outline: none;
+        }
+        
+        .newsletter-form button {
+            padding: 1rem 2rem;
+            background-color: var(--primary);
+            color: var(--dark);
+            border: none;
+            border-radius: 0 50px 50px 0;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        
+        .newsletter-form button:hover {
+            background-color: #ffb733;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 3rem 0 1rem;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-column h3 {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-column h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 40px;
+            height: 3px;
+            background-color: var(--primary);
+        }
+        
+        .footer-column ul {
+            list-style: none;
+        }
+        
+        .footer-column ul li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-column ul li a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-column ul li a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            color: var(--dark);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+            }
+            
+            nav ul {
+                margin-top: 1rem;
+            }
+            
+            nav ul li {
+                margin-left: 1rem;
+                margin-right: 1rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input {
+                border-radius: 50px;
+                margin-bottom: 1rem;
+            }
+            
+            .newsletter-form button {
+                border-radius: 50px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <i class="fas fa-crown"></i>
+                    Slocely.Digi
+                </a>
+                <nav>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#featured">Featured</a></li>
+                        <li><a href="#categories">Categories</a></li>
+                        <li><a href="#testimonials">Reviews</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Discover Premium Amazon Products</h1>
+            <p>Handpicked selection of the best products with exclusive deals for our customers</p>
+            <a href="#featured" class="btn">Explore Products</a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured" id="featured">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Products</h2>
+            </div>
+            <div class="products-grid">
+                <!-- Product 1 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://m.media-amazon.com/images/I/81ehpjqrhUL._SX569_.jpg" alt="VEGETABLE CHOPER">
+                        <span class="product-badge">Bestseller</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">KITCHEN</span>
+                        <h3 class="product-title">VEGETABLE CHOPER</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹169</span><br>
+                        </div>
+                        <div>
+                            <span class="vary" style="font-size:smaller;">price may vary</span>
+                        </div>
+                        <a href="https://amzn.in/d/0zuUf8W" class="product-link" target="_blank">View on Amazon</a>
+                    </div>
+                </div>
+
+                <!-- Product 2 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://m.media-amazon.com/images/I/61L5QgPvgGL._SL1500_.jpg" alt="Smart Watch">
+                        <span class="product-badge">Trending</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Wearables</span>
+                        <h3 class="product-title">Smart Watch with Alexa</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹3,999</span><br>
+                        </div>
+                        <div>
+                            <span class="vary" style="font-size:smaller;">price may vary</span>
+                        </div>
+                        <a href="https://www.amazon.in/dp/B08KTZ8249/?tag=your-affiliate-tag" class="product-link" target="_blank">View on Amazon</a>
+                    </div>
+                </div>
+
+                <!-- Product 3 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://m.media-amazon.com/images/I/71geVdy6-OS._SL1500_.jpg" alt="Air Fryer">
+                        <span class="product-badge">Limited Deal</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Kitchen Appliances</span>
+                        <h3 class="product-title">Digital Air Fryer 5.5L</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹</span><br>
+                        </div>
+                        <div>
+                            <span class="vary" style="font-size:smaller;">price may vary</span>
+                        </div>
+                        <a href="https://www.amazon.in/dp/B08LZTHK6X/?tag=your-affiliate-tag" class="product-link" target="_blank">View on Amazon</a>
+                    </div>
+                </div>
+
+                <!-- Product 4 -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="https://m.media-amazon.com/images/I/61BGE6iu4AL._SL1500_.jpg" alt="Backpack">
+                        <span class="product-badge">Amazon's Choice</span>
+                    </div>
+                    <div class="product-info">
+                        <span class="product-category">Bags & Luggage</span>
+                        <h3 class="product-title">Anti-Theft Laptop Backpack</h3>
+                        <div class="product-price">
+                            <span class="current-price">₹999</span><br>
+                        </div>
+                        <div>
+                            <span class="vary" style="font-size:smaller;">price may vary</span>
+                        </div>
+                        <a href="https://www.amazon.in/dp/B07P8WQD5J/?tag=your-affiliate-tag" class="product-link" target="_blank">View on Amazon</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Categories Section -->
+    <section class="categories" id="categories">
+        <div class="container">
+            <div class="section-title">
+                <h2>Shop by Category</h2>
+            </div>
+            <div class="categories-grid">
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-laptop"></i>
+                    </div>
+                    <h4 class="category-title">Electronics</h4>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <h4 class="category-title">Fashion</h4>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-home"></i>
+                    </div>
+                    <h4 class="category-title">Home & Kitchen</h4>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <h4 class="category-title">Books</h4>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-gamepad"></i>
+                    </div>
+                    <h4 class="category-title">Toys & Games</h4>
+                </div>
+                <div class="category-card">
+                    <div class="category-icon">
+                        <i class="fas fa-dumbbell"></i>
+                    </div>
+                    <h4 class="category-title">Sports & Fitness</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <div class="section-title">
+                <h2>What Our Customers Say</h2>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"I found the perfect product for our kitchen through SlocelyDigi. The detailed review helped me make the right choice, and the link took me straight to Amazon for a seamless purchase."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/32.jpg" alt="Riya Sharma">
+                        </div>
+                        <div class="author-info">
+                            <h4>Riya Sharma</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"The deals on this site are incredible! I saved over 40% on a smartwatch that I've been wanting for months. The affiliate links make shopping so convenient."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/45.jpg" alt="Amit Patel">
+                        </div>
+                        <div class="author-info">
+                            <h4>Amit Patel</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <p class="testimonial-text">"SlocelyDigi has become my go-to for Amazon shopping. The curated selection saves me hours of browsing, and I always find quality products at great prices."</p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">
+                            <img src="https://randomuser.me/api/portraits/women/68.jpg" alt="Priya Nair">
+                        </div>
+                        <div class="author-info">
+                            <h4>Priya Nair</h4>
+                            <p>Verified Buyer</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>slocely</h3>
+                    <p>Your trusted source for the best Amazon products. We carefully select premium items to save you time and money.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Slocely.Digi. All Rights Reserved. | As an Amazon Associate we earn from qualifying purchases.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Simple JavaScript for smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Newsletter form submission
+        const newsletterForm = document.querySelector('.newsletter-form');
+        newsletterForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert(`Thank you for subscribing with ${email}! You'll receive our best deals soon.`);
+            this.querySelector('input').value = '';
+        });
+    </script>
+</body>
+</html>
